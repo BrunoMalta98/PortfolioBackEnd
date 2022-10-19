@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,22 +38,22 @@ public class PersonaController {
 
     }
 
-    /*@PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody DtoExperiencia dtoxp) {
+    @PostMapping("/create")
+    public ResponseEntity<?> create(@RequestBody DtoPersona dtopersona) {
 
-        if (StringUtils.isBlank(dtoxp.getNombreE())) {
+        if (StringUtils.isBlank(dtopersona.getNombre())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if (impPersonaService.existsByNombreE(dtoxp.getNombreE())) {
+        if (impPersonaService.existsByNombre(dtopersona.getNombre())) {
             return new ResponseEntity(new Mensaje("Esa experiencia existe"), HttpStatus.BAD_REQUEST);
         }
 
-        Persona experiencia = new Experiencia(dtoxp.getNombreE(), dtoxp.getPuesto(), dtoxp.getDescripcion(),dtoxp.getFechaInicio(), dtoxp.getFechaFin(),
-                dtoxp.getImgEmpresa());
-        impPersonaService.save(experiencia);
+        Persona persona = new Persona(dtopersona.getNombre(), dtopersona.getApellido(),dtopersona.getTitulo(),dtopersona.getUniversidades(), dtopersona.getDescripcion(),
+                dtopersona.getImg());
+        impPersonaService.save(persona);
 
         return new ResponseEntity(new Mensaje("Experiencia creada con exito"), HttpStatus.OK);
-    }*/
+    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DtoPersona dtopersona) {
