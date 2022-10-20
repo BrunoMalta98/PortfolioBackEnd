@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/persona")
+//@CrossOrigin(origins = "http://localhost:4200")
 @CrossOrigin(origins = "https://mi-portfolio-bruno.web.app")
 public class PersonaController {
   
@@ -52,7 +53,7 @@ public class PersonaController {
                 dtopersona.getImg());
         impPersonaService.save(persona);
 
-        return new ResponseEntity(new Mensaje("Experiencia creada con exito"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Persona creada con exito"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
